@@ -10,10 +10,21 @@
  */
 
 func challenge1(input: String) -> Bool {
-  // yor code goes here...
-  // dont forget override return
-  return false
+  var existRepeatSymbol = false
+
+  for (i, char1) in input.enumerated() {
+    for (j, char2) in input.enumerated() {
+      if i != j && char2 == char1 {
+        existRepeatSymbol = true
+        break
+      }
+    }
+    if existRepeatSymbol {break}
+  }
+
+  return !existRepeatSymbol
 }
+
 assert(challenge1(input: "No duplicates") == true, "Challenge 1 failed")
 assert(challenge1(input: "abcdefghijklmnopqrstuvwxyz") == true, "Challenge 1 failed")
 assert(challenge1(input: "AaBbCc") == true, "Challenge 1 failed")
@@ -32,9 +43,8 @@ assert(challenge1(input: "Hello, world") == false, "Challenge 1 failed")
  */
 
 func challenge2(input: String, count: Character) -> Int {
-  // yor code goes here...
-  // dont forget override return
-  return 0
+  let ar: Array = input.split(separator: count, omittingEmptySubsequences: false)
+  return ar.count - 1
 }
 
 assert(challenge2(input: "The rain in Spain", count: "a") == 2, "Challenge 2 failed")
@@ -53,9 +63,7 @@ assert(challenge2(input: "Mississippi", count: "i") == 4, "Challenge 2 failed")
 */
 
 func challenge3(input: String) -> String {
-  // yor code goes here...
-  // dont forget override return
-  return ""
+  return input.split(separator: " ").map { String($0.reversed())}.joined(separator: " ")
 }
 
 assert(challenge3(input: "Swift Coding Challenge") == "tfiwS gnidoC egnellahC", "Challenge 3 failed")
